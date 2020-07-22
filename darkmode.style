@@ -1,0 +1,24 @@
+figure.frameon: False
+figure.facecolor: (0, 0, 0, 0)
+axes.spines.top: True
+axes.spines.right: True
+axes.spines.bottom: True
+axes.spines.left: True
+axes.edgecolor: white
+axes.facecolor: (1, 1, 1, 0.15)
+axes.labelcolor: white
+axes.linewidth: 1.0
+axes.titlepad: 8.0
+axes.xmargin: 0
+axes.ymargin: 0
+grid.color: white
+hatch.color: white
+text.color: white
+xtick.color: white
+xtick.direction: in
+xtick.major.pad: 9.0
+xtick.major.size: 4.0
+xtick.major.width: 1.0
+ytick.color: white
+ytick.direction: in
+ytick.major.pad: 9.0
