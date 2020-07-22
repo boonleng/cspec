@@ -14,7 +14,7 @@ def read(file, verbose=0):
     head_struct = struct.Struct('IIIIHH')
     pack_struct = struct.Struct('IIIIIHHI')
     cpi_struct = struct.Struct('IIIIHHHHHHHHHHIII')
-    pri_struct = struct.Struct('IIHHHH')
+    pri_struct = struct.Struct('IIHHHHhhhhhhhh')
 
     # Pulse
     def read_pulse(fid, pri_struct, cpi_header):
@@ -35,8 +35,13 @@ def read(file, verbose=0):
 
         # Pulse
         pulse = Object()
+        pulse.counter = n[3]
         pulse.azimuth = (n[4] & 0x3FFF) * 360 / 2 ** 14
         pulse.elevation = (n[5] & 0x3FFF) * 180 / 2 ** 13
+        pulse.h_pilot_hi = n[6] + 1j * n[7]
+        pulse.h_pilot_lo = n[8] + 1j * n[9]
+        pulse.v_pilot_hi = n[10] + 1j * n[11]
+        pulse.v_pilot_lo = n[12] + 1j * n[13]
         pulse.ngate_long_hi = cpi_header.num_range_long_hi
         pulse.ngate_long_lo = cpi_header.num_range_long_lo
         pulse.ngate_short_hi = cpi_header.num_range_short_hi
@@ -154,8 +159,9 @@ def read(file, verbose=0):
                 cpis.append(cpi_header)
                 rays.append(pulses)
                 if verbose:
-                    print('    cpi:{:3d}   E:{:.2f}   A:{:5.2f}-{:5.2f} ({})   size:{}'.format(
+                    print('    cpi:{:3d}   {:08d}   E:{:.2f}   A:{:6.2f}-{:6.2f} ({})   size:{}'.format(
                         cpi_header.check_counter,
+                        pulses[0].counter,
                         pulses[0].elevation, pulses[0].azimuth, pulses[-1].azimuth,
                         cpi_header.count,
                         cpi_header.data_size))
