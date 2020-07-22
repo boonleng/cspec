@@ -138,6 +138,7 @@ def read(file, verbose=0):
     # Rewind back to just after the file header
     fid.seek(24, 0)
 
+    cpis = []
     rays = []
     for _ in range(file_header.pack_count):
         pack_header = read_pack_header(fid, pack_struct)
@@ -150,6 +151,7 @@ def read(file, verbose=0):
                 for k in range(cpi_header.count):
                     pulse = read_pulse(fid, pri_struct, cpi_header)
                     pulses.append(pulse)
+                cpis.append(cpi_header)
                 rays.append(pulses)
                 if verbose:
                     print('    cpi:{:3d}   E:{:.2f}   A:{:5.2f}-{:5.2f} ({})   size:{}'.format(
@@ -164,5 +166,4 @@ def read(file, verbose=0):
         print('Warning: There is still {} B left.'.format(filesize - fid.tell()))
     fid.close()
     
-    return rays
-    
+    return rays, cpis    
