@@ -14,7 +14,7 @@ def read(file, verbose=0):
     head_struct = struct.Struct('IIIIHH')
     pack_struct = struct.Struct('IIIIIHHI')
     cpi_struct = struct.Struct('IIIIHHHHHHHHHHIII')
-    pri_struct = struct.Struct('IIHHHHhhhhhhhh')
+    pri_struct = struct.Struct('IIHHHHhhhhhhhhHHHHbbbb')
 
     # Pulse
     def read_pulse(fid, pri_struct, cpi_header):
@@ -46,6 +46,14 @@ def read(file, verbose=0):
         pulse.ngate_long_lo = cpi_header.num_range_long_lo
         pulse.ngate_short_hi = cpi_header.num_range_short_hi
         pulse.ngate_short_lo = cpi_header.num_range_short_lo
+        pulse.tx_power_h_short = n[14]
+        pulse.tx_power_h_long = n[15]
+        pulse.tx_power_v_short = n[16]
+        pulse.tx_power_v_longt = n[17]
+        pulse.phase_v_long = n[18] * np.pi / 128
+        pulse.phase_v_short = n[19] * np.pi / 128
+        pulse.phase_h_long = n[20] * np.pi / 128
+        pulse.phase_h_short = n[21] * np.pi / 128
 
         # H channel data
         pulse.h_long_hi = read_iq_block(cpi_header.align_num_range_long_hi, cpi_header.num_range_long_hi, fid)
@@ -85,6 +93,10 @@ def read(file, verbose=0):
         cpi_header.num_range_short_lo = n[11]
         cpi_header.num_range_long_hi = n[12]
         cpi_header.num_range_long_lo = n[13]
+        cpi_header.word9 = n[14]
+        cpi_header.prf_code = (n[14] & 0x3000000) >> 23
+        cpi_header.word10 = n[15]
+        cpi_header.stagger_method = (n[15] & 0xE00000) >> 21
 
         return cpi_header
 
