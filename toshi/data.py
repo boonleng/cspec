@@ -14,7 +14,7 @@ def read(file, verbose=0):
     head_struct = struct.Struct('IIIIHH')
     pack_struct = struct.Struct('IIIIIHHI')
     cpi_struct = struct.Struct('IIIIHHHHHHHHHHIII')
-    pri_struct = struct.Struct('IIHHHHhhhhhhhhHHHHbbbb')
+    pri_struct = struct.Struct('IIHHHHhhhhhhhhHHHHbbbbIIIIIhhhhhhhhIII')
 
     # Pulse
     def read_pulse(fid, pri_struct, cpi_header):
@@ -35,6 +35,7 @@ def read(file, verbose=0):
 
         # Pulse
         pulse = Object()
+        pulse.raw_pri = tmp
         pulse.counter = n[3]
         pulse.azimuth = (n[4] & 0x3FFF) * 360 / 2 ** 14
         pulse.elevation = (n[5] & 0x3FFF) * 180 / 2 ** 13
@@ -54,6 +55,9 @@ def read(file, verbose=0):
         pulse.phase_v_short = n[19] * np.pi / 128
         pulse.phase_h_long = n[20] * np.pi / 128
         pulse.phase_h_short = n[21] * np.pi / 128
+        pulse.latitude = n[35] * 360 / 2 ** 32
+        pulse.longitude = n[36] * 360 / 2 ** 32
+        pulse.h_sea_level = n[37] * 0.01
 
         # H channel data
         pulse.h_long_hi = read_iq_block(cpi_header.align_num_range_long_hi, cpi_header.num_range_long_hi, fid)
