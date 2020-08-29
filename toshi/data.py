@@ -4,6 +4,8 @@ import glob
 import struct
 import numpy as np
 
+from .turbines import *
+
 class Object(object):
     pass
 
@@ -188,4 +190,4 @@ def read(file, verbose=0):
         print('Warning: There is still {} B left.'.format(filesize - fid.tell()))
     fid.close()
     
-    return rays, cpis    
+    return rays, cpis
