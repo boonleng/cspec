@@ -100,9 +100,10 @@ def read(file, verbose=0):
         cpi_header.num_range_long_hi = n[12]
         cpi_header.num_range_long_lo = n[13]
         cpi_header.word9 = n[14]
-        cpi_header.prf_code = (n[14] & 0x3000000) >> 23
+        cpi_header.prf_code = (n[14] >> 23) & 0x03
+        cpi_header.fs_code = (n[14] >> 26) & 0x03
         cpi_header.word10 = n[15]
-        cpi_header.stagger_method = (n[15] & 0xE00000) >> 21
+        cpi_header.stagger_method = (n[15] >> 21) & 0x03
 
         return cpi_header
 
