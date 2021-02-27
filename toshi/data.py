@@ -37,6 +37,7 @@ def read(file, verbose=0):
 
         # Pulse
         pulse = Object()
+        pulse.cpi_header = cpi_header
         pulse.raw_pri = tmp
         pulse.counter = n[3]
         pulse.azimuth = (n[4] & 0x3FFF) * 360 / 2 ** 14
@@ -45,10 +46,6 @@ def read(file, verbose=0):
         pulse.h_pilot_lo = n[8] + 1j * n[9]
         pulse.v_pilot_hi = n[10] + 1j * n[11]
         pulse.v_pilot_lo = n[12] + 1j * n[13]
-        pulse.ngate_long_hi = cpi_header.num_range_long_hi
-        pulse.ngate_long_lo = cpi_header.num_range_long_lo
-        pulse.ngate_short_hi = cpi_header.num_range_short_hi
-        pulse.ngate_short_lo = cpi_header.num_range_short_lo
         pulse.tx_power_h_short = n[14]
         pulse.tx_power_h_long = n[15]
         pulse.tx_power_v_short = n[16]
@@ -62,16 +59,16 @@ def read(file, verbose=0):
         pulse.h_sea_level = n[37] * 0.01
 
         # H channel data
-        pulse.h_long_hi = read_iq_block(cpi_header.align_num_range_long_hi, cpi_header.num_range_long_hi, fid)
         pulse.h_long_lo = read_iq_block(cpi_header.align_num_range_long_lo, cpi_header.num_range_long_lo, fid)
-        pulse.h_short_hi = read_iq_block(cpi_header.align_num_range_short_hi, cpi_header.num_range_short_hi, fid)
+        pulse.h_long_hi = read_iq_block(cpi_header.align_num_range_long_hi, cpi_header.num_range_long_hi, fid)
         pulse.h_short_lo = read_iq_block(cpi_header.align_num_range_short_lo, cpi_header.num_range_short_lo, fid)
+        pulse.h_short_hi = read_iq_block(cpi_header.align_num_range_short_hi, cpi_header.num_range_short_hi, fid)
 
         # V channel data
-        pulse.v_long_hi = read_iq_block(cpi_header.align_num_range_long_hi, cpi_header.num_range_long_hi, fid)
         pulse.v_long_lo = read_iq_block(cpi_header.align_num_range_long_lo, cpi_header.num_range_long_lo, fid)
-        pulse.v_short_hi = read_iq_block(cpi_header.align_num_range_short_hi, cpi_header.num_range_short_hi, fid)
+        pulse.v_long_hi = read_iq_block(cpi_header.align_num_range_long_hi, cpi_header.num_range_long_hi, fid)
         pulse.v_short_lo = read_iq_block(cpi_header.align_num_range_short_lo, cpi_header.num_range_short_lo, fid)
+        pulse.v_short_hi = read_iq_block(cpi_header.align_num_range_short_hi, cpi_header.num_range_short_hi, fid)
 
         return pulse
 
