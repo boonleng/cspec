@@ -283,6 +283,23 @@ def i2map():
     ])
     return rgb
 
+def c12map():
+    rgb = np.array([
+        [0.00, 1.00, 1.00, 1.0],    # cyan
+        [0.00, 0.00, 1.00, 1.0],    # dark blue
+        [0.00, 1.00, 0.00, 1.0],    # light green
+        [0.00, 0.50, 0.00, 1.0],    # dark green
+        [1.00, 1.00, 0.00, 1.0],    # yellow
+        [1.00, 0.50, 0.00, 1.0],    # orange
+        [1.00, 0.00, 0.00, 1.0],    # torch red
+        [0.50, 0.00, 0.00, 1.0],    # dark red
+        [0.80, 0.60, 0.80, 1.0],    # light purple
+        [0.40, 0.20, 0.40, 1.0],    # dark purple
+        [0.80, 0.80, 0.60, 1.0],    # light dirty
+        [0.40, 0.40, 0.40, 1.0],    # dark gray
+    ])
+    return rgb
+
 # From reference:
 # Hooker, S. B. et al, Detecting Dipole Ring Separatrices with Zebra
 # Palettes, IEEE Transactions on Geosciences and Remote Sensing, vol. 33,
