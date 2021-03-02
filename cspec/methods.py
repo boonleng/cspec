@@ -1,12 +1,19 @@
 import numpy as np
 import itertools
 
-def dilate(x):
-    y = np.logical_or(x, np.roll(x, 1, axis=0))
-    y = np.logical_or(y, np.roll(x, -1, axis=0))
-    y[:, 1:] = np.logical_or(y[:, 1:], x[:, :-1])
-    y[:, :-1] = np.logical_or(y[:, :-1], x[:, 1:])
-    return y
+def dilate(src, n=1):
+    def _dilate(x):
+        y = np.logical_or(x, np.roll(x, 1, axis=0))
+        y = np.logical_or(y, np.roll(x, -1, axis=0))
+        y[:, 1:] = np.logical_or(y[:, 1:], x[:, :-1])
+        y[:, :-1] = np.logical_or(y[:, :-1], x[:, 1:])
+        return y
+    if n == 1:
+        return _dilate(src)
+    d = src
+    for _ in range(n):
+        d = np.logical_or(d, _dilate(d))
+    return d
 
 def cell2mask(shape, cells):
     mask = np.zeros(shape, dtype=np.bool)
