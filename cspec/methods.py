@@ -130,3 +130,18 @@ def cinterp_tags(z, a, r, tags):
             z_interp[ii] = np.sum(z_good * w) / np.sum(w)
     
     return z_interp
+
+def wtc_tags(turbines, az, r, n=2, mask=None):
+    cells = pos2cellid(turbines, az, r)
+    m = np.zeros((len(az), len(r)), dtype=bool)
+    for c in cells:
+        m[c[0], c[1]] = True
+    m[:, 1:] = np.logical_or(m[:, 1:], m[:, :-1])
+    m[:, 1:] = np.logical_or(m[:, 1:], m[:, :-1])
+    m1 = dilate(m, n=n)
+    tags = mask2tags(m1)
+    # Take out the dilated portion
+    tags[m1 ^ m] = 0
+    if mask:
+        tags[mask] = 0
+    return tags
