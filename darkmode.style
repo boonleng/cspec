@@ -5,7 +5,7 @@ axes.spines.right: True
 axes.spines.bottom: True
 axes.spines.left: True
 axes.edgecolor: white
-axes.facecolor: (1, 1, 1, 0.15)
+axes.facecolor: (0.1, 0.1, 0.1, 0.3)
 axes.labelcolor: white
 axes.linewidth: 1.0
 axes.titlepad: 8.0
@@ -20,5 +20,5 @@ xtick.major.pad: 9.0
 xtick.major.size: 4.0
 xtick.major.width: 1.0
 ytick.color: white
-ytick.direction: in
 ytick.major.pad: 9.0
+legend.facecolor:
