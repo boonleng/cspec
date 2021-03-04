@@ -21,4 +21,5 @@ xtick.major.size: 4.0
 xtick.major.width: 1.0
 ytick.color: white
 ytick.major.pad: 9.0
-legend.facecolor:
+legend.facecolor: (0.1, 0.1, 0.1, 0.5)
+font.sans-serif: Helvetica Neue, Helvetica, Lucida Grande, Verdana, Geneva
