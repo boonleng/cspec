@@ -1,0 +1,25 @@
+figure.frameon: False
+figure.facecolor: (0, 0, 0, 0)
+axes.spines.top: True
+axes.spines.right: True
+axes.spines.bottom: True
+axes.spines.left: True
+axes.edgecolor: black
+axes.facecolor: (0.9, 0.9, 0.9, 0.3)
+axes.labelcolor: black
+axes.linewidth: 1.0
+axes.titlepad: 8.0
+axes.xmargin: 0
+axes.ymargin: 0
+grid.color: black
+hatch.color: black
+text.color: black
+xtick.color: black
+xtick.direction: in
+xtick.major.pad: 9.0
+xtick.major.size: 4.0
+xtick.major.width: 1.0
+ytick.color: black
+ytick.major.pad: 9.0
+legend.facecolor: (1.0, 1.0, 1.0, 0.5)
+font.sans-serif: Helvetica Neue, Helvetica, Lucida Grande, Verdana, Geneva
