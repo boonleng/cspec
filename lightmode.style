@@ -1,5 +1,6 @@
 figure.frameon: False
 figure.facecolor: (0, 0, 0, 0)
+figure.dpi: 144
 axes.spines.top: True
 axes.spines.right: True
 axes.spines.bottom: True
