@@ -98,7 +98,6 @@ def mask2cells(mask):
     return cells
 
 def cinterp_tags(z, a, r, tags):
-    dr = 0.5 * (r[1] - r[0])
     tt = np.unique(tags)
     z_interp = z.copy()
 
