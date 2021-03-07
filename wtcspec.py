@@ -79,6 +79,9 @@ fs = 1.0e6 * (1 << cpi_headers[0].fs_code)
 dr = 3.0e8 / fs / 2
 r = 1.0e-3 * (np.arange(0, ngate, dtype=np.single) * dr + 0.5 * dr)
 
+# Cell indices of the cells with wind turbines
+cid = cspec.pos2cellid(turbines, np.unique(az), r)
+
 use_window = True
 
 # Go through the pulses
@@ -101,7 +104,7 @@ for k, (pulses, cpi_header) in enumerate(zip(ray_pulses, cpi_headers)):
         p[j, :ngate_short_hi] = pulse.h_short_hi * c                       # Short hi
         p[j, :ngate_short_lo] = pulse.h_short_lo * c                       # Short lo        
 
-    cpuls.append(pc)                                                       # Keep a copy of the compressed pulse
+    cpuls.append(pc[:ngate])                                                       # Keep a copy of the compressed pulse
 
     # Data windowing
     if use_window:
@@ -111,3 +114,5 @@ for k, (pulses, cpi_header) in enumerate(zip(ray_pulses, cpi_headers)):
     w /= np.sqrt(np.sum(w ** 2)) / np.sqrt(p.shape[0])                     # Normalize to non-windowed gain
     ww = np.repeat(np.expand_dims(w, axis=1), ngate, axis=1)               # Make same shape
     p *= ww                                                                # Windowing
+
+for cpul in
