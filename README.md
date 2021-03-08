@@ -7,54 +7,35 @@ There are two newly modules:
 - `cspec` - Cell spectral analysis
 - `toshi` - Toshiba data reader for I/Q data
 
-There are two demo notebooks:
+There are demo notebooks:
  - Demo 01 - Using `toshi` module
  - Demo 02 - Adaptive Spectrum Processing
+ - Demo 03 - Process in One Go
+ -  Demo 04 - Results from CSV
 
-There are five development notebooks:
+There are several development notebooks:
  - Dev 01 - Reading IQ Data
  - Dev 02 - Read Functions
  - Dev 03 - Geographic and Cartesian Coordinates
  - Dev 04 - Coordinate Array Transformation
  - Dev 05 - Preview
+ - Dev 07 - Wind-Turbine Locations
+ - Dev 08 - Reference Signal
+ - Dev 09 - Pulse Compression
 
-The two demo notebooks represent most of usable components in this project. The development notebooks are mainly for development and experimentation only. They may not fully function on other machines.
+The demo notebooks represent most of usable components in this project. The development notebooks are mainly for development and experimentation only. They may not fully function on other machines.
 
 2021
 ===
 
-Turbine locations are stored in `blob/wtc_loc.scv'.
-
-Datasets to process:
-
-- 01/28 12:40
-- 08/09 17:00
-- 07/28 18:00
-- 02/01 10:15
-- 08/14 15:30
-- 08/09 09:00
-- 07/28 04:00
-- 08/09 01:00
-- 01/15 10:20
-- 01/15 10:38
-
-=> sort by time
-
-- 2020/07/28 04:00
-- 2020/07/28 18:00
-- 2020/08/09 01:00
-- 2020/08/09 09:00
-- 2020/08/09 17:00
-- 2020/08/14 15:30
-- 2021/01/15 10:20
-- 2021/01/15 10:38
-- 2021/01/28 12:40
-- 2021/02/01 10:15
-
+Turbine locations are stored in `blob/wtc_loc.csv`.
+Processed results are stored in `blob/results.csv` and `blob/deltas.npz`.
+Refer to noteboo Demo 04 - Results from CSV for visualization of the summary results.
 
 Random Notes
 ===
 
+Data received:
 ```
 └── IQdata
     ├── 2020.07.28
