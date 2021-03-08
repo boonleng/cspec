@@ -11,7 +11,7 @@ There are demo notebooks:
  - Demo 01 - Using `toshi` module
  - Demo 02 - Adaptive Spectrum Processing
  - Demo 03 - Process in One Go
- -  Demo 04 - Results from CSV
+ - Demo 04 - Results from CSV
 
 There are several development notebooks:
  - Dev 01 - Reading IQ Data
@@ -25,12 +25,19 @@ There are several development notebooks:
 
 The demo notebooks represent most of usable components in this project. The development notebooks are mainly for development and experimentation only. They may not fully function on other machines.
 
+
 2021
 ===
 
-Turbine locations are stored in `blob/wtc_loc.csv`.
-Processed results are stored in `blob/results.csv` and `blob/deltas.npz`.
-Refer to noteboo Demo 04 - Results from CSV for visualization of the summary results.
+Pulse compression is performed using supplied waveform:
+ - Transmit waveform is stored as a binary file in `blob/Ref_TableH1.bin` in a signed 16-bit I/Q interleaving format.
+
+Wind turbine locations are now tabulated in a spreadsheet:
+
+ - Each turbine is documented as (range, azimuth) in `blob/wtc_loc.csv`.
+ - Summary results are stored in `blob/results.csv` and `blob/deltas.npz`.
+ - Refer to notebook Demo 04 - Results from CSV for visualization of the summary results.
+
 
 Random Notes
 ===
